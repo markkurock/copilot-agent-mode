@@ -1,3 +1,5 @@
+# Use custom user model
+AUTH_USER_MODEL = 'octofit_tracker.User'
 """
 Django settings for octofit_tracker project.
 
@@ -25,7 +27,11 @@ SECRET_KEY = 'django-insecure-l4i2rgnw!@f)s%f%#=3&n0e1^4v%%1klum_y5-^-y4e$dq#aws
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+import os
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME', '')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if CODESPACE_NAME:
+    ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
 
 
 # Application definition
